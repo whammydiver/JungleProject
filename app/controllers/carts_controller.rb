@@ -17,6 +17,10 @@ class CartsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def cart_empty
+    
+  end
+
   private
 
   def modify_cart_delta(product_id, delta)
