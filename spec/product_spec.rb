@@ -31,8 +31,8 @@ RSpec.describe Product, type: :model do
         category_id: @category.id, 
         quantity: 240,
         price: 2999})
-      @product.save!
-      expect(@product.name).to_not be_present
+      @product.save 
+      expect(@product).to_not be_valid
     end
     
     it "verifies a product created witout a category_id will not save" do
@@ -43,8 +43,8 @@ RSpec.describe Product, type: :model do
         category_id: nil, 
         quantity: 240,
         price: 2999})
-      @product.save!
-      expect(@product.category_id).to_not be_present
+      @product.save
+      expect(@product).to_not be_valid
     end
   
     it "verifies a product created witout a quantity will not save" do
@@ -54,9 +54,9 @@ RSpec.describe Product, type: :model do
         name: "Big Expensive Tree",
         category_id: @category.id, 
         quantity: nil,
-        price: 2999})
-      @product.save!
-      expect(@product.quantity).to_not be_present
+        price_cents: 2999})
+      @product.save
+      expect(@product).to_not be_valid
     end
 
     it "verifies a product created witout a price will not save" do
@@ -66,9 +66,9 @@ RSpec.describe Product, type: :model do
         name: "Big Expensive Tree",
         category_id: @category.id, 
         quantity: 240,
-        price: nil})
-      @product.save!
-      expect(@product.price).to_not be_present
+        price_cents: nil})
+      @product.save
+      expect(@product).to_not be_valid
     end
   
   end
