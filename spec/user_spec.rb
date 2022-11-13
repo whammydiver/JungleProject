@@ -63,8 +63,8 @@ RSpec.describe User, type: :model do
           first_name: "Adam", 
           last_name: "Andrews", 
           email: "aandrews@gmail.com", 
-          password: "andrews", 
-          password_confirmation: "andrews"
+          password: "Andrews7", 
+          password_confirmation: "Andrews7"
         })
         @user.save
         expect(@user).to be_valid
@@ -75,8 +75,8 @@ RSpec.describe User, type: :model do
           first_name: "Adam", 
           last_name: "Andrews", 
           email: "aandrews@gmail.com", 
-          password: "andrews", 
-          password_confirmation: "andreus"
+          password: "Andrews7", 
+          password_confirmation: "Andreus7"
         })
         @user.save
         expect(@user).to_not be_valid
@@ -87,9 +87,27 @@ RSpec.describe User, type: :model do
     describe "user emails must be unique" do
       
       it 'permits the creation of this user since his email address doesnt exist yet' do
+        @user = User.new({
+          first_name: "Brian", 
+          last_name: "Brown", 
+          email: "bbrown@gmail.com", 
+          password: "Brown4lyf", 
+          password_confirmation: "Brown4lyf"
+        })
+        @user.save
+        expect(@user).to be_valid
       end
 
       it 'disallows creation of this user since his email is a duplicate of the email in the test case above' do
+        @user = User.new({
+          first_name: "Bobby", 
+          last_name: "Brown", 
+          email: "bbrown@gmail.com", 
+          password: "Brown4lyf", 
+          password_confirmation: "Brown4lyf"
+        })
+        @user.save
+        expect(@user).to_not be_valid
       end
 
     end
@@ -102,5 +120,9 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  # describe '.authenticate_with_credentials' do
+  #   # examples here
+  # end
 
 end
